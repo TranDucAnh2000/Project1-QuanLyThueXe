@@ -30,11 +30,11 @@ public class SuaKHController {
     @FXML
     void sua(ActionEvent event) throws SQLException {
         KhachHangModel khachHangModel = new KhachHangModel();
-        khachHangModel.setMaKH(textMaKH.getText());
+        khachHangModel.setMaKH(Integer.parseInt(textMaKH.getText().trim()));
         khachHangModel.setTenKH(textTenKH.getText());
-        khachHangModel.setSoDT(Integer.valueOf(textSoDT.getText()));
-        khachHangModel.setSoCMT(Integer.valueOf(textSoCMT.getText()));
-        khachHangModel.setDiaChi(textDiaChi.getText());
+        khachHangModel.setSoDT(textSoDT.getText().trim());
+        khachHangModel.setSoCMT(textSoCMT.getText().trim());
+        khachHangModel.setDiaChi(textDiaChi.getText().trim());
 
         khachHangService.editListKhachHang(khachHangModel);
     }
@@ -49,11 +49,10 @@ public class SuaKHController {
 
     public void initializeTextField(KhachHangModel khachHangModel){
         textDiaChi.setText(khachHangModel.getDiaChi());
-        textMaKH.setText(khachHangModel.getMaKH());
+        textMaKH.setText(String.valueOf(khachHangModel.getMaKH()));
         textTenKH.setText(khachHangModel.getTenKH());
-        textSoDT.setText(String.valueOf(khachHangModel.getSoDT()));
-        textSoCMT.setText(String.valueOf(khachHangModel.getSoCMT()));
-
+        textSoDT.setText(khachHangModel.getSoDT());
+        textSoCMT.setText(khachHangModel.getSoCMT());
         textMaKH.setEditable(false);
     }
 

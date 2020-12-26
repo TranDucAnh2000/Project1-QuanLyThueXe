@@ -141,7 +141,7 @@ public class KhachHangController implements Initializable {
             alert.showAndWait();
         }
 
-        String maKH = khachHangModel.getMaKH();
+        int maKH = khachHangModel.getMaKH();
         khachHangService.deleteListKhachHang(maKH);
         tableKhachHang.getItems().removeAll(tableKhachHang.getSelectionModel().getSelectedItem());
     }

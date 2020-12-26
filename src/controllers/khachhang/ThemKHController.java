@@ -30,10 +30,10 @@ public class ThemKHController {
     @FXML
     void them(ActionEvent event) throws SQLException {
         KhachHangModel khachHangModel = new KhachHangModel();
-        khachHangModel.setMaKH(textMaKH.getText());
+        khachHangModel.setMaKH(Integer.parseInt(textMaKH.getText()));
         khachHangModel.setTenKH(textTenKH.getText());
-        khachHangModel.setSoDT(Integer.valueOf(textSoDT.getText()));
-        khachHangModel.setSoCMT(Integer.valueOf(textSoCMT.getText()));
+        khachHangModel.setSoDT(textSoDT.getText());
+        khachHangModel.setSoCMT(textSoCMT.getText());
         khachHangModel.setDiaChi(textDiaChi.getText());
 
         khachHangService.addListKhachHang(khachHangModel);
