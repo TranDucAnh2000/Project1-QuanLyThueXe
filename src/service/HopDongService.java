@@ -2,14 +2,13 @@ package service;
 
 import models.HopDongModel;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HopDongService {
-    public static List<HopDongModel> getListHopDong(){
+
+    public List<HopDongModel> getListHopDong(){
         List<HopDongModel> lshopdong=new ArrayList<>();
         //Connection connection= null;
         try {
@@ -22,10 +21,10 @@ public class HopDongService {
             ex.setMaHD(res.getInt("MaHD"));
             ex.setMaKH(res.getInt("MaKH"));
             ex.setMaNV(res.getInt("MaNV"));
-            ex.setTiencoc(res.getInt("TienCoc"));
+            ex.setTienCoc(res.getInt("TienCoc"));
             ex.setTienThanhToan(res.getInt("TienThanhToan"));
-            ex.setNgaythue(res.getDate("NgayThue"));
-            ex.setNgaytra(res.getDate("NgayTra"));
+            ex.setNgayThue(res.getDate("NgayThue"));
+            ex.setNgayHenTra(res.getDate("NgayHenTra"));
             lshopdong.add(ex);
         }
         connection.close();
@@ -36,5 +35,33 @@ public class HopDongService {
         }
 
         return lshopdong;
+    }
+
+    public void addListHopDong(HopDongModel hopDongModel) throws SQLException {
+        Connection conn = DBConnection.getConnection();
+        String sql = "Insert into HopDong(MaKH, MaNV, NgayThue, NgayHenTra, TienCoc, TienThanhToan) Values(?, ?, ?, ?, ?, ?)";
+        PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setInt(1, hopDongModel.getMaKH());
+        pst.setInt(2, hopDongModel.getMaNV());
+        pst.setDate(3, hopDongModel.getNgayThue());
+        pst.setDate(4, hopDongModel.getNgayHenTra());
+        pst.setInt(5, hopDongModel.getTienCoc());
+        pst.setInt(6, hopDongModel.getTienThanhToan());
+
+        pst.executeUpdate();
+
+        conn.close();
+        pst.close();
+    }
+
+    public void deleteListHopDong(int maHD) throws SQLException {
+        Connection conn = service.DBConnection.getConnection();
+        String sql = "Delete from HopDong where MaHD = "+maHD+
+                        "\nDelete from ChitietHopDong where MaHD = "+maHD;
+        Statement pst = conn.createStatement();
+        pst.execute(sql);
+
+        conn.close();
+        pst.close();
     }
 }

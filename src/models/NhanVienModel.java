@@ -7,7 +7,7 @@ public class NhanVienModel {
     private String tenNV;
     private String diachi;
     private String soDT;
-    private String soCMND;
+    private String soCMT;
     private Date ngaysinh;
 
     public int getMaNV() {
@@ -42,12 +42,12 @@ public class NhanVienModel {
         this.soDT = soDT;
     }
 
-    public String getSoCMND() {
-        return soCMND;
+    public String getSoCMT() {
+        return soCMT;
     }
 
-    public void setSoCMND(String soCMND) {
-        this.soCMND = soCMND;
+    public void setSoCMT(String soCMT) {
+        this.soCMT = soCMT;
     }
 
     public Date getNgaysinh() {

@@ -1,14 +1,13 @@
 package service;
 
 import models.NhanVienModel;
-import models.XeModel;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class NhanVienService {
-    public List<NhanVienModel> getlistXe()  {
+    public List<NhanVienModel> getlistNV()  {
         List<NhanVienModel> lsNV=new ArrayList<>();
         String sql="select * from NhanVien";
 
@@ -17,12 +16,12 @@ public class NhanVienService {
             ResultSet res=DBConnection.getData(sql,connection);
             while (res.next()){
                 NhanVienModel nv=new NhanVienModel();
-                nv.setMaNV(res.getInt("MaXE"));
-                nv.setTenNV(res.getNString("BienSoXe"));
+                nv.setMaNV(res.getInt("MaNV"));
+                nv.setTenNV(res.getNString("TenNV"));
                 nv.setSoDT(res.getString("SoDT"));
                 nv.setNgaysinh(res.getDate("NgaySinh"));
                 nv.setDiachi(res.getNString("DiaChi"));
-                nv.setSoCMND(res.getString("SoCMT"));
+                nv.setSoCMT(res.getString("SoCMT"));
                 lsNV.add(nv);
             }
             connection.close();
@@ -42,24 +41,24 @@ public class NhanVienService {
 
             while(res.next()){
                 NhanVienModel nv=new NhanVienModel();
-                nv.setMaNV(res.getInt("MaXE"));
-                nv.setTenNV(res.getNString("BienSoXe"));
+                nv.setMaNV(res.getInt("MaNV"));
+                nv.setTenNV(res.getNString("TenNV"));
                 nv.setSoDT(res.getString("SoDT"));
                 nv.setNgaysinh(res.getDate("NgaySinh"));
                 nv.setDiachi(res.getNString("DiaChi"));
-                nv.setSoCMND(res.getString("SoCMT"));
+                nv.setSoCMT(res.getString("SoCMT"));
                 lsNV.add(nv);
             }
             conn.close();
             res.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("loi khi get list tim kiem xe");
+            System.out.println("loi khi get list tim kiem nv");
         }
         return lsNV;
     }
 
-    public void addListXe(NhanVienModel nv)  {
+    public void addListNV(NhanVienModel nv)  {
         try {
             Connection conn = DBConnection.getConnection();
             String sql = "Insert into NhanVien Values( ?, ?, ?, ?,?)";
@@ -69,7 +68,7 @@ public class NhanVienService {
             pst.setString(2, nv.getSoDT());
             pst.setDate(3,nv.getNgaysinh());
             pst.setNString(4, nv.getDiachi());
-            pst.setString(5,nv.getSoCMND());
+            pst.setString(5,nv.getSoCMT());
             pst.executeUpdate();
             conn.close();
             pst.close();
@@ -78,7 +77,7 @@ public class NhanVienService {
         }
     }
 
-    public void deleteXe(int maNV)  {
+    public void deleteNV(int maNV)  {
         try {
             Connection  conn = DBConnection.getConnection();
             String sql = "Delete from NhanVien where MaNV = "+maNV;
@@ -91,7 +90,7 @@ public class NhanVienService {
         }
     }
 
-    public void editListXe(NhanVienModel nv)  {
+    public void editListNV(NhanVienModel nv)  {
         String sql = "Update NhanVien set TenNV = ?, SoDT = ?, NgaySinh = ?,DiaChi = ?,SoCMT=? where MaNV = ?";
         try {
             Connection  conn = DBConnection.getConnection();
@@ -100,7 +99,7 @@ public class NhanVienService {
             pst.setString(2, nv.getSoDT());
             pst.setDate(3,nv.getNgaysinh());
             pst.setNString(4,nv.getDiachi());
-            pst.setString(5,nv.getSoCMND());
+            pst.setString(5,nv.getSoCMT());
             pst.executeUpdate();
             conn.close();
             pst.close();

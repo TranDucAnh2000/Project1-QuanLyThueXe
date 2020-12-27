@@ -86,10 +86,10 @@ public class KhachHangService {
         String sql = "Update KhachHang set TenKH = ?, SoDT = ?, SoCMT = ?, DiaChi = ?\n" +
                 "where MaKH = ?";
         PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setNString(1, khachHangModel.getTenKH());
+        pst.setString(1, khachHangModel.getTenKH());
         pst.setString(2, khachHangModel.getSoDT());
         pst.setString(3, khachHangModel.getSoCMT());
-        pst.setNString(4, khachHangModel.getDiaChi());
+        pst.setString(4, khachHangModel.getDiaChi());
         pst.setInt(5, khachHangModel.getMaKH());
 
         pst.executeUpdate();

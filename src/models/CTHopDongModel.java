@@ -3,9 +3,9 @@ import java.sql.Date;
 public class CTHopDongModel {
     private  int maHD;
     private int maXe;
-    private int tienphat;
-    private Date ngaytra;
-    private  String suco;
+    private int tienPhat;
+    private Date ngayTra;
+    private  String suCo;
 
     public CTHopDongModel() {
     }
@@ -26,27 +26,27 @@ public class CTHopDongModel {
         this.maXe = maXe;
     }
 
-    public int getTienphat() {
-        return tienphat;
+    public int getTienPhat() {
+        return tienPhat;
     }
 
-    public void setTienphat(int tienphat) {
-        this.tienphat = tienphat;
+    public void setTienPhat(int tienPhat) {
+        this.tienPhat = tienPhat;
     }
 
-    public Date getNgaytra() {
-        return ngaytra;
+    public Date getNgayTra() {
+        return ngayTra;
     }
 
-    public void setNgaytra(Date ngaytra) {
-        this.ngaytra = ngaytra;
+    public void setNgayTra(Date ngayTra) {
+        this.ngayTra = ngayTra;
     }
 
-    public String getSuco() {
-        return suco;
+    public String getSuCo() {
+        return suCo;
     }
 
-    public void setSuco(String suco) {
-        this.suco = suco;
+    public void setSuCo(String suCo) {
+        this.suCo = suCo;
     }
 }

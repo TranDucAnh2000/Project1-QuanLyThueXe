@@ -3,44 +3,44 @@ package models;
 import java.sql.Date;
 
 public class HopDongModel {
-    private int MaKH;
-    private  int MaHD;
-    private  int MaNV;
-    private  int tiencoc;
+    private int maKH;
+    private int maHD;
+    private int maNV;
+    private int tienCoc;
     private int tienThanhToan;
-    private Date ngaythue;
-    private Date ngaytra;
+    private Date ngayThue;
+    private Date ngayHenTra;
 
     public int getMaKH() {
-        return MaKH;
+        return maKH;
     }
 
     public void setMaKH(int maKH) {
-        MaKH = maKH;
+        this.maKH = maKH;
     }
 
     public int getMaHD() {
-        return MaHD;
+        return maHD;
     }
 
     public void setMaHD(int maHD) {
-        MaHD = maHD;
+        this.maHD = maHD;
     }
 
     public int getMaNV() {
-        return MaNV;
+        return maNV;
     }
 
     public void setMaNV(int maNV) {
-        MaNV = maNV;
+        this.maNV = maNV;
     }
 
-    public int getTiencoc() {
-        return tiencoc;
+    public int getTienCoc() {
+        return tienCoc;
     }
 
-    public void setTiencoc(int tiencoc) {
-        this.tiencoc = tiencoc;
+    public void setTienCoc(int tiencoc) {
+        this.tienCoc = tiencoc;
     }
 
     public int getTienThanhToan() {
@@ -51,19 +51,19 @@ public class HopDongModel {
         this.tienThanhToan = tienThanhToan;
     }
 
-    public Date getNgaythue() {
-        return ngaythue;
+    public Date getNgayThue() {
+        return ngayThue;
     }
 
-    public void setNgaythue(Date ngaythue) {
-        this.ngaythue = ngaythue;
+    public void setNgayThue(Date ngayThue) {
+        this.ngayThue = ngayThue;
     }
 
-    public Date getNgaytra() {
-        return ngaytra;
+    public Date getNgayHenTra() {
+        return ngayHenTra;
     }
 
-    public void setNgaytra(Date ngaytra) {
-        this.ngaytra = ngaytra;
+    public void setNgayHenTra(Date ngayHenTra) {
+        this.ngayHenTra = ngayHenTra;
     }
 }

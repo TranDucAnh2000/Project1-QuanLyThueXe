@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sqljdbc42">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../IDE/sqljdbc_8.4.1.0_enu/sqljdbc_8.4/enu/sqljdbc42.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

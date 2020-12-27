@@ -6,39 +6,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="539.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.khachhang.ThemKHController">
+<AnchorPane prefHeight="447.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.khachhang.ThemKHController">
    <children>
-      <Label alignment="CENTER" layoutX="14.0" layoutY="20.0" prefHeight="87.0" prefWidth="133.0" text="Mã khách hàng">
-         <font>
-            <Font name="System Bold" size="15.0" />
-   </font>
-</Label>
-      <Label alignment="CENTER" layoutX="14.0" layoutY="107.0" prefHeight="87.0" prefWidth="133.0" text="Tên khách hàng">
+      <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="87.0" prefWidth="133.0" text="Tên khách hàng">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="14.0" layoutY="194.0" prefHeight="87.0" prefWidth="133.0" text="Số điện thoại">
+      <Label alignment="CENTER" layoutX="14.0" layoutY="101.0" prefHeight="87.0" prefWidth="133.0" text="Số điện thoại">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="14.0" layoutY="270.0" prefHeight="87.0" prefWidth="133.0" text="Số CMT">
+      <Label alignment="CENTER" layoutX="14.0" layoutY="177.0" prefHeight="87.0" prefWidth="133.0" text="Số CMT">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="14.0" layoutY="357.0" prefHeight="87.0" prefWidth="133.0" text="Địa chỉ">
+      <Label alignment="CENTER" layoutX="14.0" layoutY="264.0" prefHeight="87.0" prefWidth="133.0" text="Địa chỉ">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="textMaKH" layoutX="166.0" layoutY="38.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
-      <TextField fx:id="textTenKH" layoutX="166.0" layoutY="125.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
-      <TextField fx:id="textSoDT" layoutX="166.0" layoutY="212.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
-      <TextField fx:id="textSoCMT" layoutX="166.0" layoutY="288.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
-      <TextField fx:id="textDiaChi" layoutX="166.0" layoutY="375.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
-      <Button layoutX="166.0" layoutY="453.0" mnemonicParsing="false" onAction="#them" prefHeight="50.0" prefWidth="107.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Thêm" />
-      <Button layoutX="305.0" layoutY="453.0" mnemonicParsing="false" onAction="#xoaText" prefHeight="50.0" prefWidth="107.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Xóa text" />
+      <TextField fx:id="textTenKH" layoutX="166.0" layoutY="32.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <TextField fx:id="textSoDT" layoutX="166.0" layoutY="119.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <TextField fx:id="textSoCMT" layoutX="166.0" layoutY="195.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <TextField fx:id="textDiaChi" layoutX="166.0" layoutY="282.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <Button layoutX="166.0" layoutY="360.0" mnemonicParsing="false" onAction="#them" prefHeight="50.0" prefWidth="107.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Thêm" />
+      <Button layoutX="305.0" layoutY="360.0" mnemonicParsing="false" onAction="#xoaText" prefHeight="50.0" prefWidth="107.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Xóa text" />
    </children>
 </AnchorPane>

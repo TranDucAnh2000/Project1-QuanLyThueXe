@@ -154,9 +154,14 @@ public class KhachHangController implements Initializable {
             alert.showAndWait();
         }
 
-        int maKH = khachHangModel.getMaKH();
-        khachHangService.deleteListKhachHang(maKH);
-        tableKhachHang.getItems().removeAll(tableKhachHang.getSelectionModel().getSelectedItem());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn chắc muốn xóa?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if(alert.getResult() == ButtonType.YES) {
+            int maKH = khachHangModel.getMaKH();
+            khachHangService.deleteListKhachHang(maKH);
+            tableKhachHang.getItems().removeAll(tableKhachHang.getSelectionModel().getSelectedItem());
+        }
     }
 
     private void updateTable(){

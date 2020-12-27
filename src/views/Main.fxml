@@ -19,7 +19,6 @@
                   <Button alignment="CENTER" layoutY="361.0" mnemonicParsing="false" onAction="#handleNhanVien" prefHeight="80.0" prefWidth="237.0" stylesheets="@../static/style.css" text="Nhân viên" />
                   <Button alignment="CENTER" layoutY="441.0" mnemonicParsing="false" onAction="#handleHopDong" prefHeight="80.0" prefWidth="237.0" stylesheets="@../static/style.css" text="Hợp đồng" />
                   <Button alignment="CENTER" layoutY="521.0" mnemonicParsing="false" onAction="#handleThongKe" prefHeight="80.0" prefWidth="237.0" stylesheets="@../static/style.css" text="Thống kê" />
-                  <Button alignment="CENTER" layoutY="601.0" mnemonicParsing="false" onAction="#handleXuatFile" prefHeight="80.0" prefWidth="237.0" stylesheets="@../static/style.css" text="Xuất file" />
                   <ImageView fitHeight="119.0" fitWidth="197.0" layoutX="24.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../static/Car.png" />
@@ -52,11 +51,6 @@
                   <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="19.0" layoutY="539.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../static/thongke.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="19.0" layoutY="619.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../static/xuatfile.png" />
                      </image>
                   </ImageView>
                </children>
