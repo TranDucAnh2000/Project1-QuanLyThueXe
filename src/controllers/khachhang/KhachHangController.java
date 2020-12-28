@@ -191,7 +191,7 @@ public class KhachHangController implements Initializable {
                     khachHangService.addListKhachHang(lskhachhang.get(i));
                 }
                 updateTable();
-            } catch (IOException | SQLException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
                 updateTable();
             }

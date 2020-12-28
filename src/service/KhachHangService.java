@@ -1,5 +1,6 @@
 package service;
 
+import javafx.scene.control.Alert;
 import models.KhachHangModel;
 
 import java.sql.*;
@@ -55,20 +56,31 @@ public class KhachHangService {
         return list;
     }
 
-        public void addListKhachHang(KhachHangModel khachHangModel) throws SQLException {
-        Connection conn = service.DBConnection.getConnection();
-        String sql = "Insert into KhachHang(TenKH, SoDT, SoCMT, DiaChi) Values( ?, ?, ?, ?)";
-        PreparedStatement pst = conn.prepareStatement(sql);
-        //pst.setInt(1, khachHangModel.getMaKH());
-        pst.setNString(1, khachHangModel.getTenKH());
-        pst.setString(2, khachHangModel.getSoDT());
-        pst.setString(3, khachHangModel.getSoCMT());
-        pst.setNString(4, khachHangModel.getDiaChi());
+    public int addListKhachHang(KhachHangModel khachHangModel) {
 
-        pst.executeUpdate();
+        try {
+            Connection  conn = DBConnection.getConnection();
 
-        conn.close();
-        pst.close();
+            String sql = "insert into KhachHang(TenKH, SoDT, SoCMT, DiaChi) values( ?, ?, ?, ?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            //pst.setInt(1, khachHangModel.getMaKH());
+            pst.setNString(1, khachHangModel.getTenKH());
+            pst.setString(2, khachHangModel.getSoDT());
+            pst.setString(3, khachHangModel.getSoCMT());
+            pst.setNString(4, khachHangModel.getDiaChi());
+
+            pst.executeUpdate();
+
+            conn.close();
+            pst.close();
+            return 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Thêm không thành công,Nhập lại dữ liệu");
+            alert.showAndWait();
+            return 0;
+        }
     }
 
     public void deleteListKhachHang(int maKH) throws SQLException {

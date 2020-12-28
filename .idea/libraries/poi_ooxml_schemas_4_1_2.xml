@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="poi-ooxml-schemas-4.1.2">
+    <CLASSES>
+      <root url="jar://E:/Downloads/Compressed/poi-bin-4.1.2-20200217/poi-4.1.2/poi-ooxml-schemas-4.1.2.jar!/" />
+      <root url="jar://E:/Downloads/Compressed/poi-bin-4.1.2-20200217/poi-4.1.2/poi-ooxml-4.1.2.jar!/" />
+      <root url="jar://E:/Downloads/Compressed/poi-bin-4.1.2-20200217/poi-4.1.2/poi-excelant-4.1.2.jar!/" />
+      <root url="jar://E:/Downloads/Compressed/poi-bin-4.1.2-20200217/poi-4.1.2/poi-4.1.2.jar!/" />
+      <root url="jar://E:/Downloads/Compressed/poi-bin-4.1.2-20200217/poi-4.1.2/ooxml-lib/xmlbeans-3.1.0.jar!/" />
+      <root url="jar://E:/Downloads/Compressed/poi-bin-4.1.2-20200217/poi-4.1.2/lib/commons-codec-1.13.jar!/" />
+      <root url="jar://E:/Downloads/Compressed/poi-bin-4.1.2-20200217/poi-4.1.2/lib/commons-collections4-4.4.jar!/" />
+      <root url="jar://E:/Downloads/Compressed/poi-bin-4.1.2-20200217/poi-4.1.2/lib/commons-compress-1.19.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

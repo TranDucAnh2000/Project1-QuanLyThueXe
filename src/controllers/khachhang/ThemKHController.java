@@ -27,17 +27,28 @@ public class ThemKHController {
 
     @FXML
     void them(ActionEvent event) throws SQLException {
+
         KhachHangModel khachHangModel = new KhachHangModel();
-        khachHangModel.setTenKH(textTenKH.getText());
-        khachHangModel.setSoDT(textSoDT.getText());
-        khachHangModel.setSoCMT(textSoCMT.getText());
-        khachHangModel.setDiaChi(textDiaChi.getText());
+        if(!textTenKH.getText().isEmpty())
+            khachHangModel.setTenKH(textTenKH.getText());
+        else khachHangModel.setTenKH(null);
+        if(!textSoDT.getText().isEmpty())
+            khachHangModel.setSoDT(textSoDT.getText().trim());
+        else khachHangModel.setSoDT(null);
+        if(!textSoCMT.getText().isEmpty())
+            khachHangModel.setSoCMT(textSoCMT.getText().trim());
+        else khachHangModel.setSoCMT(null);
+        khachHangModel.setDiaChi(textDiaChi.getText().trim());
+        System.out.println(khachHangModel.getTenKH()+"\t"+khachHangModel.getSoDT());
+        int t= khachHangService.addListKhachHang(khachHangModel);
 
-        khachHangService.addListKhachHang(khachHangModel);
+        if (t==1) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Thêm thành công!");
+            alert.showAndWait();
+        }
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Thêm thành công!");
-        alert.showAndWait();
+
     }
 
     @FXML
