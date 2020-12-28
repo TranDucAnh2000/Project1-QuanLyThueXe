@@ -53,5 +53,10 @@
       <TextField fx:id="textTienPhat" layoutX="720.0" layoutY="241.0" prefHeight="49.0" prefWidth="174.0" styleClass="textfield" stylesheets="@../../static/style.css" />
       <TextField fx:id="textNgayTra" layoutX="720.0" layoutY="318.0" prefHeight="49.0" prefWidth="174.0" styleClass="textfield" stylesheets="@../../static/style.css" />
       <TextField fx:id="textSuCo" layoutX="720.0" layoutY="392.0" prefHeight="49.0" prefWidth="174.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <Label alignment="CENTER" layoutX="646.0" layoutY="460.0" prefHeight="68.0" prefWidth="202.0" text="Tiền phạt = Trả xe muộn phạt 1000000đ + phí hỏng hóc" wrapText="true">
+         <font>
+            <Font name="System Italic" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

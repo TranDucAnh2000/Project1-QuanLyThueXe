@@ -35,7 +35,8 @@ public class MainController {
 
     @FXML
     void handleThongKe(ActionEvent event) {
-
+        Pane view = getPage("thongke/ThongKe.fxml");
+        mainBorderPane.setCenter(view);
     }
 
     @FXML
