@@ -40,7 +40,7 @@ public class XeService {
         try {
 
             Connection conn = service.DBConnection.getConnection();
-            ResultSet res = service.DBConnection.getData("select * from Xe where " + colSelected + " LIKE " + "N'%" + key + "%'", conn);
+            ResultSet res = service.DBConnection.getData("select * from Xe where " + colSelected + " LIKE N'%" + key + "%'", conn);
 
             while(res.next()){
                 XeModel xe=new XeModel();
@@ -63,7 +63,7 @@ public class XeService {
         return list;
     }
 
-    public void addListXe(XeModel xe)  {
+    public int addListXe(XeModel xe)  {
         try {
             Connection conn = DBConnection.getConnection();
         String sql = "Insert into Xe Values( ?, ?, ?, ?,?,?)";
@@ -78,9 +78,11 @@ public class XeService {
         pst.executeUpdate();
         conn.close();
         pst.close();
+        return 1;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     public void deleteXe(int maxe)  {
@@ -97,23 +99,26 @@ public class XeService {
         }
     }
 
-    public void editListXe(XeModel xe)  {
-        String sql = "Update KhachHang set LoaiXe = ?, TenXe = ?, GiaThue = ?,MauSac = ?,TinhTrang=?,BienSoXe=? where MaKH = ?";
+    public int editListXe(XeModel xe)  {
+        String sql = "Update Xe set LoaiXe = ?, TenXe = ?, GiaThue = ?,MauSac = ?,TinhTrang=?,BienSoXe=? where MaXE = ?";
         try {
             Connection  conn = DBConnection.getConnection();
         PreparedStatement pst = conn.prepareStatement(sql);
         pst.setNString(1, xe.getLoaiXe());
-        pst.setString(2, xe.getTenXe());
+        pst.setNString(2, xe.getTenXe());
         pst.setInt(3, xe.getGiaThue());
         pst.setNString(4, xe.getMauSac());
         pst.setBoolean(5, xe.getTinhTrang());
         pst.setString(6,xe.getBienSoXe());
+        pst.setInt(7,xe.getMaXe());
         pst.executeUpdate();
         conn.close();
         pst.close();
+        return 1;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
 

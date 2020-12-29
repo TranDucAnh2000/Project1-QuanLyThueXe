@@ -93,8 +93,11 @@ public class KhachHangService {
         pst.close();
     }
 
-    public void editListKhachHang(KhachHangModel khachHangModel) throws SQLException {
-        Connection conn = service.DBConnection.getConnection();
+    public int editListKhachHang(KhachHangModel khachHangModel)  {
+
+        try {
+            Connection conn = DBConnection.getConnection();
+
         String sql = "Update KhachHang set TenKH = ?, SoDT = ?, SoCMT = ?, DiaChi = ?\n" +
                 "where MaKH = ?";
         PreparedStatement pst = conn.prepareStatement(sql);
@@ -108,6 +111,14 @@ public class KhachHangService {
 
         conn.close();
         pst.close();
+        return 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Thêm không thành công,Nhập lại dữ liệu");
+            alert.showAndWait();
+            return 0;
+        }
     }
 
 }

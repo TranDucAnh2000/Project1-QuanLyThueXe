@@ -1,5 +1,6 @@
 package service;
 
+import javafx.scene.control.Alert;
 import models.NhanVienModel;
 
 import java.sql.*;
@@ -58,7 +59,7 @@ public class NhanVienService {
         return lsNV;
     }
 
-    public void addListNV(NhanVienModel nv)  {
+    public int addListNV(NhanVienModel nv)  {
         try {
             Connection conn = DBConnection.getConnection();
             String sql = "Insert into NhanVien Values( ?, ?, ?, ?,?)";
@@ -72,9 +73,15 @@ public class NhanVienService {
             pst.executeUpdate();
             conn.close();
             pst.close();
+            return 1;
         } catch (SQLException e) {
             e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Thêm không thành công,Nhập lại dữ liệu");
+            alert.showAndWait();
+            return  0;
         }
+
     }
 
     public void deleteNV(int maNV)  {
@@ -90,7 +97,7 @@ public class NhanVienService {
         }
     }
 
-    public void editListNV(NhanVienModel nv)  {
+    public int editListNV(NhanVienModel nv)  {
         String sql = "Update NhanVien set TenNV = ?, SoDT = ?, NgaySinh = ?,DiaChi = ?,SoCMT=? where MaNV = ?";
         try {
             Connection  conn = DBConnection.getConnection();
@@ -100,11 +107,18 @@ public class NhanVienService {
             pst.setDate(3,nv.getNgaysinh());
             pst.setNString(4,nv.getDiachi());
             pst.setString(5,nv.getSoCMT());
+            pst.setInt(6,nv.getMaNV());
             pst.executeUpdate();
             conn.close();
             pst.close();
+            return 1;
         } catch (SQLException e) {
             e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Thêm không thành công,Nhập lại dữ liệu");
+            alert.showAndWait();
+
         }
+        return 0;
     }
 }

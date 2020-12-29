@@ -153,14 +153,15 @@ public class KhachHangController implements Initializable {
             alert.setHeaderText("Chọn 1 khách hàng đi bạn!");
             alert.showAndWait();
         }
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn chắc muốn xóa?", ButtonType.YES, ButtonType.NO);
+            alert.showAndWait();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn chắc muốn xóa?", ButtonType.YES, ButtonType.NO);
-        alert.showAndWait();
-
-        if(alert.getResult() == ButtonType.YES) {
-            int maKH = khachHangModel.getMaKH();
-            khachHangService.deleteListKhachHang(maKH);
-            tableKhachHang.getItems().removeAll(tableKhachHang.getSelectionModel().getSelectedItem());
+            if (alert.getResult() == ButtonType.YES) {
+                int maKH = khachHangModel.getMaKH();
+                khachHangService.deleteListKhachHang(maKH);
+                tableKhachHang.getItems().removeAll(tableKhachHang.getSelectionModel().getSelectedItem());
+            }
         }
     }
 
@@ -175,7 +176,7 @@ public class KhachHangController implements Initializable {
         tableOblist = FXCollections.observableArrayList(list);
         tableKhachHang.setItems(tableOblist);
     }
-    private void docfile(){}
+
     @FXML
     void openfile(){
         FileChooser filechooser =new FileChooser();

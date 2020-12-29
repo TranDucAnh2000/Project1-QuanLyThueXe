@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="614.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.xe.SuaXeController">
+    <children>
+        <Label alignment="CENTER" layoutX="14.0" layoutY="97.0" prefHeight="87.0" prefWidth="133.0" text="Loại Xe">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER" layoutX="14.0" layoutY="171.0" prefHeight="87.0" prefWidth="133.0" text="Tên Xe">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER" layoutX="14.0" layoutY="245.0" prefHeight="87.0" prefWidth="133.0" text="Giá Thuê">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER" layoutX="14.0" layoutY="319.0" prefHeight="87.0" prefWidth="133.0" text="Màu Sắc">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="textLoaiXe" layoutX="166.0" layoutY="115.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+        <TextField fx:id="textTenXe" layoutX="166.0" layoutY="189.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+        <TextField fx:id="textGiaThue" layoutX="166.0" layoutY="263.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+        <TextField fx:id="textMauSac" layoutX="166.0" layoutY="337.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+        <Button layoutX="167.0" layoutY="550.0" mnemonicParsing="false" onAction="#sua" prefHeight="50.0" prefWidth="107.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Sửa" />
+        <Button layoutX="306.0" layoutY="550.0" mnemonicParsing="false" onAction="#xoaText" prefHeight="50.0" prefWidth="107.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Xóa text" />
+        <Label alignment="CENTER" layoutX="14.0" layoutY="22.0" prefHeight="87.0" prefWidth="133.0" text="Mã Xe">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="textMaXe" layoutX="166.0" layoutY="41.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+        <Label alignment="CENTER" layoutX="14.0" layoutY="387.0" prefHeight="87.0" prefWidth="133.0" text="Tình Trạng">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </Label>
+      <Label alignment="CENTER" layoutX="14.0" layoutY="455.0" prefHeight="87.0" prefWidth="133.0" text="Biển Số Xe">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textBienSoXe" layoutX="166.0" layoutY="473.0" prefHeight="50.0" prefWidth="247.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <ComboBox fx:id="combotinhtrang" layoutX="166.0" layoutY="406.0" prefHeight="50.0" prefWidth="247.0" />
+    </children>
+</AnchorPane>
