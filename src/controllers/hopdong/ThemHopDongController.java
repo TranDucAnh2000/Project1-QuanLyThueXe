@@ -36,26 +36,33 @@ public class ThemHopDongController {
         HopDongModel hopDongModel = new HopDongModel();
         hopDongModel.setMaNV(Integer.valueOf(textMaNV.getText()));
         hopDongModel.setMaKH(Integer.valueOf(textMaKH.getText()));
+        if(!textNgayThue.getText().isEmpty())
         hopDongModel.setNgayThue(Date.valueOf(textNgayThue.getText()));
+        else hopDongModel.setNgayThue(null);
+        if(!textNgayHenTra.getText().isEmpty())
         hopDongModel.setNgayHenTra(Date.valueOf(textNgayHenTra.getText()));
+        else hopDongModel.setNgayHenTra(null);
+        if(!(textTienCoc.getText().isEmpty() || Integer.parseInt(textTienCoc.getText().trim())<=0))
         hopDongModel.setTienCoc(Integer.valueOf(textTienCoc.getText()));
+        else hopDongModel.setTienCoc(Integer.parseInt(null));
         hopDongModel.setTienThanhToan(Integer.valueOf(textMaKH.getText()));
 
         HopDongService hopDongService = new HopDongService();
-        hopDongService.addListHopDong(hopDongModel);
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Thêm thành công!");
-        alert.showAndWait();
+        int a= hopDongService.addListHopDong(hopDongModel);
+        if(a==1) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Thêm thành công!");
+            alert.showAndWait();
+        }
     }
 
     public void initializeText(HopDongModel hopDongModel){
         textMaKH.setText(String.valueOf(hopDongModel.getMaKH()));
         textMaNV.setText(String.valueOf(hopDongModel.getMaNV()));
-        textNgayThue.setText(String.valueOf(hopDongModel.getNgayThue()));
-        textNgayHenTra.setText(String.valueOf(hopDongModel.getNgayHenTra()));
-        textTienCoc.setText(String.valueOf(hopDongModel.getTienCoc()));
-        textTienThanhToan.setText(String.valueOf(hopDongModel.getTienThanhToan()));
+//        textNgayThue.setText(String.valueOf(hopDongModel.getNgayThue()));
+//        textNgayHenTra.setText(String.valueOf(hopDongModel.getNgayHenTra()));
+//        textTienCoc.setText(String.valueOf(hopDongModel.getTienCoc()));
+//        textTienThanhToan.setText(String.valueOf(hopDongModel.getTienThanhToan()));
 
         textMaNV.setEditable(false);
         textMaKH.setEditable(false);

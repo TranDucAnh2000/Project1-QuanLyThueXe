@@ -1,5 +1,7 @@
 package service;
 
+import javafx.scene.control.Alert;
+import models.CTHopDongModel;
 import models.HopDongModel;
 
 import java.sql.*;
@@ -37,8 +39,11 @@ public class HopDongService {
         return lshopdong;
     }
 
-    public void addListHopDong(HopDongModel hopDongModel) throws SQLException {
-        Connection conn = DBConnection.getConnection();
+    public int addListHopDong(HopDongModel hopDongModel) {
+        Connection conn = null;
+        try {
+            conn = DBConnection.getConnection();
+
         String sql = "Insert into HopDong(MaKH, MaNV, NgayThue, NgayHenTra, TienCoc, TienThanhToan) Values(?, ?, ?, ?, ?, ?)";
         PreparedStatement pst = conn.prepareStatement(sql);
         pst.setInt(1, hopDongModel.getMaKH());
@@ -47,20 +52,26 @@ public class HopDongService {
         pst.setDate(4, hopDongModel.getNgayHenTra());
         pst.setInt(5, hopDongModel.getTienCoc());
         pst.setInt(6, hopDongModel.getTienThanhToan());
-
         pst.executeUpdate();
-
         conn.close();
         pst.close();
+        return 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Thêm không thành công,Nhập lại dữ liệu");
+            alert.showAndWait();
+        }
+        return 0;
     }
 
-    public void deleteListHopDong(int maHD) throws SQLException {
+    public void deleteListHopDong(HopDongModel ctHopDongModel) throws SQLException {
         Connection conn = service.DBConnection.getConnection();
-        String sql = "Delete from HopDong where MaHD = "+maHD+
-                        "\nDelete from ChitietHopDong where MaHD = "+maHD;
+        String sql = "Delete from ChitietHopDong where MaHD = "+ctHopDongModel.getMaHD() ;
+        String sql2="Delete from HopDong where MaHD = "+ctHopDongModel.getMaHD();
         Statement pst = conn.createStatement();
         pst.execute(sql);
-
+        pst.execute(sql2);
         conn.close();
         pst.close();
     }

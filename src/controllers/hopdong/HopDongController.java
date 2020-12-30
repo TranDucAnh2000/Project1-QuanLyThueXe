@@ -119,28 +119,29 @@ public class HopDongController implements Initializable {
         //canh bao
         if(khachHangModel == null || nhanVienModel == null){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Chọn 1 quyển sách trước đã!");
+            alert.setContentText("Chọn khách hàng, nhân viên trước!");
             alert.setHeaderText(null);
             alert.showAndWait();
         }
+        else {
+            HopDongModel hopDongModel = new HopDongModel();
+            hopDongModel.setMaKH(tableKhachHang.getSelectionModel().getSelectedItem().getMaKH());
+            hopDongModel.setMaNV(tableNhanVien.getSelectionModel().getSelectedItem().getMaNV());
 
-        HopDongModel hopDongModel = new HopDongModel();
-        hopDongModel.setMaKH(tableKhachHang.getSelectionModel().getSelectedItem().getMaKH());
-        hopDongModel.setMaNV(tableNhanVien.getSelectionModel().getSelectedItem().getMaNV());
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("hopdong/ThemHD.fxml"));
+            Parent parent = loader.load();
 
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("hopdong/ThemHD.fxml"));
-        Parent parent = loader.load();
+            ThemHopDongController themHopDongController = loader.getController();
+            themHopDongController.initializeText(hopDongModel);
 
-        ThemHopDongController themHopDongController = loader.getController();
-        themHopDongController.initializeText(hopDongModel);
+            themHDStage.setScene(new Scene(parent));
+            themHDStage.setTitle("Thêm hợp đồng");
+            themHDStage.show();
 
-        themHDStage.setScene(new Scene(parent));
-        themHDStage.setTitle("Thêm hợp đồng");
-        themHDStage.show();
-
-        themHDStage.setOnCloseRequest((e)->{
-            updateTable();
-        });
+            themHDStage.setOnCloseRequest((e) -> {
+                updateTable();
+            });
+        }
     }
 
     @FXML
@@ -153,14 +154,15 @@ public class HopDongController implements Initializable {
             alert.setHeaderText(null);
             alert.showAndWait();
         }
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn chắc muốn xóa?", ButtonType.YES, ButtonType.NO);
+            alert.showAndWait();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn chắc muốn xóa?", ButtonType.YES, ButtonType.NO);
-        alert.showAndWait();
-
-        if (alert.getResult() == ButtonType.YES) {
-            int maHD = hopDongModel.getMaHD();
-            hopDongService.deleteListHopDong(maHD);
-            tableHopDong.getItems().removeAll(tableHopDong.getSelectionModel().getSelectedItem());
+            if (alert.getResult() == ButtonType.YES) {
+                int maHD = hopDongModel.getMaHD();
+                hopDongService.deleteListHopDong(hopDongModel);
+                tableHopDong.getItems().removeAll(tableHopDong.getSelectionModel().getSelectedItem());
+            }
         }
     }
 
@@ -170,15 +172,10 @@ public class HopDongController implements Initializable {
     }
 
     @FXML
-    void nhapFile(ActionEvent event) {
-
-    }
-
-    @FXML
     void handleRow(MouseEvent event) throws IOException {
         if (event.getClickCount() == 2 && tableHopDong.getSelectionModel().getSelectedItem() != null) {
-            int maHD = tableHopDong.getSelectionModel().getSelectedItem().getMaHD();
-            ctHopDongService.maHD = maHD;
+            HopDongModel hopDongModel = tableHopDong.getSelectionModel().getSelectedItem();
+            ctHopDongService.maHD = hopDongModel.getMaHD();
             Stage stage = new Stage();
             stage.setScene(new Scene(FXMLLoader.load(Main.class.getResource("hopdong/CTHopDong.fxml"))));
             stage.setTitle("Chi tiết hợp đồng");
