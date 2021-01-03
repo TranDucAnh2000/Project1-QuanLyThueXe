@@ -28,6 +28,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -319,9 +321,24 @@ public class KhachHangController implements Initializable {
 //        }
         ObservableList<KhachHangModel>  khachHangModels= tableKhachHang.getItems();
 //        writeHeader(sheet, 0);
+        DateTimeFormatter time = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        XSSFRow tenBang = sheet.createRow(0);
+        tenBang.createCell(0).setCellValue("Tên bảng");
+        tenBang.createCell(1).setCellValue("Khách hàng");
+        XSSFRow taiKhoanThem = sheet.createRow(1);
+        taiKhoanThem.createCell(0).setCellValue("Người dùng");
+        taiKhoanThem.createCell(1).setCellValue(Main.TDN);
+        XSSFRow maNV = sheet.createRow(2);
+        maNV.createCell(0).setCellValue("Mã nhân viên");
+        maNV.createCell(1).setCellValue(Main.maNV);
+        XSSFRow thoiGian = sheet.createRow(3);
+        thoiGian.createCell(0).setCellValue("Thời gian xuất");
+        thoiGian.createCell(1).setCellValue(time.format(now));
 
         int size=khachHangModels.size();
-        int rowid=1;
+        int rowid=5;
         for(int i=0;i<size;i++) {
             KhachHangModel ex=khachHangModels.get(i);
             row=sheet.createRow(rowid);
@@ -358,6 +375,11 @@ public class KhachHangController implements Initializable {
             }
             rowid++;
         }
+        sheet.autoSizeColumn(0);
+        sheet.autoSizeColumn(1);
+        sheet.autoSizeColumn(2);
+        sheet.autoSizeColumn(3);
+        sheet.autoSizeColumn(4);
 //        int columns=sheet.getRow(0).getPhysicalNumberOfCells();
 //        autosizeColumn(sheet, columns);
         return workbook;

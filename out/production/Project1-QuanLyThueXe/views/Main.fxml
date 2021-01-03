@@ -53,6 +53,22 @@
                         <Image url="@../static/thongke.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="TDN" layoutX="13.0" layoutY="681.0" prefHeight="37.0" prefWidth="212.0">
+                     <font>
+                        <Font name="Times New Roman Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="maNV" layoutX="16.0" layoutY="706.0" prefHeight="37.0" prefWidth="212.0">
+                     <font>
+                        <Font name="Times New Roman Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Button alignment="CENTER" layoutY="601.0" mnemonicParsing="false" onAction="#handleDangXuat" prefHeight="80.0" prefWidth="237.0" stylesheets="@../static/style.css" text="Đăng xuất" />
+                  <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="19.0" layoutY="619.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../static/logout.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </left>

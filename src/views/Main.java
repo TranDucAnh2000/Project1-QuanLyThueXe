@@ -8,12 +8,16 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static Stage primaryStage = new Stage();
+    public static String TDN;
+    public static int maNV;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        primaryStage.setTitle("Quản lý thuê xe");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        Parent root = FXMLLoader.load(getClass().getResource("dangnhap/DangNhap.fxml"));
+        this.primaryStage.setTitle("Quản lý thuê xe");
+        this.primaryStage.setScene(new Scene(root));
+        this.primaryStage.show();
     }
 
     public static void main(String[] args) {

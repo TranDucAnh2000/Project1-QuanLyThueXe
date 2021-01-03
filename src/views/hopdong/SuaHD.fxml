@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="533.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.hopdong.SuaHopDongController">
+   <children>
+      <Label alignment="CENTER" layoutX="10.0" layoutY="14.0" prefHeight="62.0" prefWidth="134.0" text="Mã khách hàng">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="10.0" layoutY="76.0" prefHeight="62.0" prefWidth="134.0" text="Mã hợp đồng">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="10.0" layoutY="138.0" prefHeight="62.0" prefWidth="134.0" text="Mã nhân viên">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="10.0" layoutY="200.0" prefHeight="62.0" prefWidth="134.0" text="Ngày thuê">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="10.0" layoutY="262.0" prefHeight="62.0" prefWidth="134.0" text="Ngày hẹn trả">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="10.0" layoutY="324.0" prefHeight="62.0" prefWidth="134.0" text="Tiền cọc">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="10.0" layoutY="386.0" prefHeight="62.0" prefWidth="134.0" text="Tiền thanh toán">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textMaKH" layoutX="167.0" layoutY="20.0" prefHeight="49.0" prefWidth="206.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <TextField fx:id="textMaHD" layoutX="167.0" layoutY="82.0" prefHeight="49.0" prefWidth="206.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <TextField fx:id="textNV" layoutX="167.0" layoutY="144.0" prefHeight="49.0" prefWidth="206.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <TextField fx:id="textNgayThue" layoutX="167.0" layoutY="206.0" prefHeight="49.0" prefWidth="206.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <TextField fx:id="textNgayHenTra" layoutX="167.0" layoutY="268.0" prefHeight="49.0" prefWidth="206.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <TextField fx:id="textTienCoc" layoutX="167.0" layoutY="330.0" prefHeight="49.0" prefWidth="206.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <TextField fx:id="textTienThanhToan" layoutX="167.0" layoutY="392.0" prefHeight="49.0" prefWidth="206.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <Button layoutX="265.0" layoutY="460.0" mnemonicParsing="false" onAction="#sua" prefHeight="49.0" prefWidth="107.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Sửa" />
+   </children>
+</AnchorPane>

@@ -22,6 +22,7 @@ import views.Main;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -177,12 +178,12 @@ public class XeController implements  Initializable{
         tableXe.setItems(tableOblist);
     }
     @FXML
-    private void openfile(){
-
+    private void openfile() throws IOException, SQLException {
+        xeService.importExcelXe();
     }
     @FXML
-    private void outputfile(){
-
+    private void outputfile() throws IOException, SQLException {
+        xeService.exportExcelXe();
     }
 
 }

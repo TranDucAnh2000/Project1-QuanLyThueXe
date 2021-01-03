@@ -1,10 +1,23 @@
 package service;
 
 import javafx.scene.control.Alert;
+import javafx.stage.FileChooser;
 import models.CTHopDongModel;
 import models.HopDongModel;
+import models.XeModel;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import views.Main;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,4 +88,27 @@ public class HopDongService {
         conn.close();
         pst.close();
     }
+
+    public int editListHopDong(HopDongModel hopDongModel)  {
+        String sql = "Update HopDong set MaKH = ?, MaNV = ?, NgayThue = ?, NgayHenTra = ?, TienCoc=?,TienThanhToan=? where MaHD = ?";
+        try {
+            Connection  conn = DBConnection.getConnection();
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, hopDongModel.getMaKH());
+            pst.setInt(2, hopDongModel.getMaNV());
+            pst.setDate(3, hopDongModel.getNgayThue());
+            pst.setDate(4, hopDongModel.getNgayHenTra());
+            pst.setInt(5, hopDongModel.getTienCoc());
+            pst.setInt(6,hopDongModel.getTienThanhToan());
+            pst.setInt(7, hopDongModel.getMaHD());
+            pst.executeUpdate();
+            conn.close();
+            pst.close();
+            return 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }

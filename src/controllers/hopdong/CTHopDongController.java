@@ -11,6 +11,7 @@ import models.CTHopDongModel;
 import models.HopDongModel;
 import service.CTHopDongService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -115,9 +116,10 @@ public class CTHopDongController implements Initializable {
     }
 
     @FXML
-    void xuatFile(ActionEvent event) {
-
+    void xuatFile(ActionEvent event) throws IOException, SQLException {
+        ctHopDongService.exportExcelHopDong(ctHopDongService.maHD);
     }
+
     public void updateTable(){
         col_MaHD.setCellValueFactory(new PropertyValueFactory<>("MaHD"));
         col_MaXe.setCellValueFactory(new PropertyValueFactory<>("MaXe"));
