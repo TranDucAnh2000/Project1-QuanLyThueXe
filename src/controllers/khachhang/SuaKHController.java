@@ -2,6 +2,7 @@ package controllers.khachhang;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import models.KhachHangModel;
 import service.KhachHangService;
@@ -30,13 +31,25 @@ public class SuaKHController {
     @FXML
     void sua(ActionEvent event) throws SQLException {
         KhachHangModel khachHangModel = new KhachHangModel();
-        khachHangModel.setMaKH(textMaKH.getText());
-        khachHangModel.setTenKH(textTenKH.getText());
-        khachHangModel.setSoDT(Integer.valueOf(textSoDT.getText()));
-        khachHangModel.setSoCMT(Integer.valueOf(textSoCMT.getText()));
-        khachHangModel.setDiaChi(textDiaChi.getText());
+        if (!(textTenKH.getText().isEmpty() && textSoCMT.getText().isEmpty() && textSoDT.getText().isEmpty())) {
+            khachHangModel.setMaKH(Integer.valueOf(textMaKH.getText()));
+            khachHangModel.setTenKH(textTenKH.getText());
+            khachHangModel.setSoDT(textSoDT.getText().trim());
+            khachHangModel.setSoCMT(textSoCMT.getText().trim());
+            khachHangModel.setDiaChi(textDiaChi.getText().trim());
+            int a = khachHangService.editListKhachHang(khachHangModel);
+            if (a == 1) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Sửa thành công!");
+                alert.showAndWait();
+            }
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Thêm không thành công,Nhập lại dữ liệu");
+            alert.showAndWait();
+        }
 
-        khachHangService.editListKhachHang(khachHangModel);
     }
 
     @FXML
@@ -48,13 +61,12 @@ public class SuaKHController {
     }
 
     public void initializeTextField(KhachHangModel khachHangModel){
-        textDiaChi.setText(khachHangModel.getDiaChi());
-        textMaKH.setText(khachHangModel.getMaKH());
-        textTenKH.setText(khachHangModel.getTenKH());
-        textSoDT.setText(String.valueOf(khachHangModel.getSoDT()));
-        textSoCMT.setText(String.valueOf(khachHangModel.getSoCMT()));
-
+        textMaKH.setText(String.valueOf(khachHangModel.getMaKH()));
         textMaKH.setEditable(false);
+        textDiaChi.setText(khachHangModel.getDiaChi());
+        textTenKH.setText(khachHangModel.getTenKH());
+        textSoDT.setText(khachHangModel.getSoDT());
+        textSoCMT.setText(khachHangModel.getSoCMT());
     }
 
 }

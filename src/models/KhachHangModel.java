@@ -2,27 +2,18 @@ package models;
 
 public class KhachHangModel {
 
-    private String maKH;
+    private int maKH;
     private String tenKH;
-    private int soDT;
-    private int soCMT;
+    private String soDT;
+    private String soCMT;
     private String diaChi;
 
-    public KhachHangModel(){ }
 
-    public KhachHangModel(String maKH, String tenKH, int soDT, int soCMT, String diaChi){
-        this.maKH = maKH;
-        this.tenKH = tenKH;
-        this.soDT = soDT;
-        this.soCMT = soCMT;
-        this.diaChi = diaChi;
-    }
-
-    public String getMaKH() {
+    public int getMaKH() {
         return maKH;
     }
 
-    public void setMaKH(String maKH) {
+    public void setMaKH(int maKH) {
         this.maKH = maKH;
     }
 
@@ -34,19 +25,19 @@ public class KhachHangModel {
         this.tenKH = tenKH;
     }
 
-    public int getSoDT() {
+    public String getSoDT() {
         return soDT;
     }
 
-    public void setSoDT(int soDT) {
+    public void setSoDT(String soDT) {
         this.soDT = soDT;
     }
 
-    public int getSoCMT() {
+    public String getSoCMT() {
         return soCMT;
     }
 
-    public void setSoCMT(int soCMT) {
+    public void setSoCMT(String soCMT) {
         this.soCMT = soCMT;
     }
 

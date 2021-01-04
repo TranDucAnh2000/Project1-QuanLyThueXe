@@ -1,8 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.hopdong.HopDongController">
-
+<AnchorPane prefHeight="751.0" prefWidth="965.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.hopdong.HopDongController">
+   <children>
+      <TableView fx:id="tableKhachHang" layoutX="212.0" layoutY="71.0" prefHeight="206.0" prefWidth="366.0" styleClass="tableview" stylesheets="@../../static/style.css">
+        <columns>
+          <TableColumn fx:id="col_MaKH" prefWidth="137.1428680419922" text="Mã khách hàng" />
+          <TableColumn fx:id="col_TenKH" prefWidth="228.57144165039062" text="Tên khách hàng" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tableNhanVien" layoutX="585.0" layoutY="71.0" prefHeight="206.0" prefWidth="366.0" styleClass="tableview" stylesheets="@../../static/style.css">
+         <columns>
+            <TableColumn fx:id="col_MaNV" prefWidth="148.57147216796875" text="Mã nhân viên" />
+            <TableColumn fx:id="col_TenNV" prefWidth="215.4285888671875" text="Tên nhân viên" />
+         </columns>
+      </TableView>
+      <Label layoutX="212.0" layoutY="30.0" prefHeight="41.0" prefWidth="174.0" text="Khách hàng">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="585.0" layoutY="30.0" prefHeight="41.0" prefWidth="174.0" text="Nhân viên">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Separator layoutY="312.0" prefHeight="0.0" prefWidth="965.0" />
+      <Label alignment="TOP_LEFT" layoutX="29.0" layoutY="71.0" prefHeight="125.0" prefWidth="174.0" text="Chọn 1 khách hàng, 1 nhân viên rồi ấn thêm. Kích đúp để xem chi tiết hợp đồng" wrapText="true">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </Label>
+      <Button layoutX="185.0" layoutY="336.0" mnemonicParsing="false" onAction="#them" prefHeight="51.0" prefWidth="134.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Thêm" />
+      <Button layoutX="339.0" layoutY="336.0" mnemonicParsing="false" onAction="#xoa" prefHeight="51.0" prefWidth="134.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Xóa" />
+      <TableView fx:id="tableHopDong" layoutX="29.0" layoutY="404.0" onMouseClicked="#handleRow" prefHeight="324.0" prefWidth="910.0" styleClass="tableview" stylesheets="@../../static/style.css">
+        <columns>
+          <TableColumn fx:id="col_MaKH_HD" prefWidth="95.42856025695801" text="Mã KH" />
+          <TableColumn fx:id="col_MaHD" prefWidth="97.71429443359375" text="Mã HĐ" />
+            <TableColumn fx:id="col_MaNV_HD" prefWidth="119.42857360839844" text="Mã nhân viên" />
+            <TableColumn fx:id="col_NgayThue" prefWidth="138.2857208251953" text="Ngày thuê" />
+            <TableColumn fx:id="col_NgayHenTra" prefWidth="145.14291381835938" text="Ngày hẹn trả" />
+            <TableColumn fx:id="col_TienCoc" prefWidth="149.7142333984375" text="Tiền cọc" />
+            <TableColumn fx:id="col_TienThanhToan" prefWidth="166.8570556640625" text="Tiền thanh toán" />
+        </columns>
+      </TableView>
+      <Label layoutX="29.0" layoutY="341.0" prefHeight="41.0" prefWidth="174.0" text="Hợp đồng">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

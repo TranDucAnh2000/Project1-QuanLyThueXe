@@ -17,7 +17,8 @@ public class MainController {
 
     @FXML
     void handleHopDong(ActionEvent event) {
-
+        Pane view = getPage("hopdong/HopDong.fxml");
+        mainBorderPane.setCenter(view);
     }
 
     @FXML
@@ -34,18 +35,14 @@ public class MainController {
 
     @FXML
     void handleThongKe(ActionEvent event) {
-
+        Pane view = getPage("thongke/ThongKe.fxml");
+        mainBorderPane.setCenter(view);
     }
 
     @FXML
     void handleXe(ActionEvent event) {
         Pane view = getPage("xe/Xe.fxml");
         mainBorderPane.setCenter(view);
-    }
-
-    @FXML
-    void handleXuatFile(ActionEvent event) {
-
     }
 
     public Pane getPage(String fileName){

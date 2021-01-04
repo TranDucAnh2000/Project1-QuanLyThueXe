@@ -10,14 +10,26 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.KhachHangModel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import service.KhachHangService;
 import views.Main;
 
+import javax.swing.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -94,20 +106,21 @@ public class KhachHangController implements Initializable {
             alert.setHeaderText("Chọn 1 khách hàng trước !");
             alert.showAndWait();
         }
+        else {
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("khachhang/SuaKH.fxml"));
+            Parent parent = loader.load();
 
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("khachhang/SuaKH.fxml"));
-        Parent parent = loader.load();
+            SuaKHController suaKHController = loader.getController();
+            suaKHController.initializeTextField(khachHangModel);
 
-        SuaKHController suaKHController = loader.getController();
-        suaKHController.initializeTextField(khachHangModel);
+            suaKHStage.setScene(new Scene(parent));
+            suaKHStage.setTitle("Sửa thông tin khách hàng");
+            suaKHStage.show();
 
-        suaKHStage.setScene(new Scene(parent));
-        suaKHStage.setTitle("Sửa thông tin khách hàng");
-        suaKHStage.show();
-
-        suaKHStage.setOnCloseRequest((e)->{
-            updateTable();
-        });
+            suaKHStage.setOnCloseRequest((e) -> {
+                updateTable();
+            });
+        }
     }
 
     @FXML
@@ -140,10 +153,16 @@ public class KhachHangController implements Initializable {
             alert.setHeaderText("Chọn 1 khách hàng đi bạn!");
             alert.showAndWait();
         }
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bạn chắc muốn xóa?", ButtonType.YES, ButtonType.NO);
+            alert.showAndWait();
 
-        String maKH = khachHangModel.getMaKH();
-        khachHangService.deleteListKhachHang(maKH);
-        tableKhachHang.getItems().removeAll(tableKhachHang.getSelectionModel().getSelectedItem());
+            if (alert.getResult() == ButtonType.YES) {
+                int maKH = khachHangModel.getMaKH();
+                khachHangService.deleteListKhachHang(maKH);
+                tableKhachHang.getItems().removeAll(tableKhachHang.getSelectionModel().getSelectedItem());
+            }
+        }
     }
 
     private void updateTable(){
@@ -156,6 +175,192 @@ public class KhachHangController implements Initializable {
         List<KhachHangModel> list = khachHangService.getListKhachHang();
         tableOblist = FXCollections.observableArrayList(list);
         tableKhachHang.setItems(tableOblist);
+    }
+
+    @FXML
+    void openfile(){
+        FileChooser filechooser =new FileChooser();
+        filechooser.setTitle("Open file Excel");
+        //filechooser.setInitialDirectory(new File(System.getProperty("C:")));
+        filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All","*.*"),new FileChooser.ExtensionFilter("XLSX","*.xlsx"));
+        File a= filechooser.showOpenDialog(null);
+        if(a!=null){
+            try {
+                XSSFWorkbook workbook= openfileexcel(a.getAbsolutePath());
+                List<KhachHangModel> lskhachhang=getlistkhachhangfromexcel(workbook);
+                for(int i=0;i<lskhachhang.size();i++){
+                    khachHangService.addListKhachHang(lskhachhang.get(i));
+                }
+                updateTable();
+            } catch (IOException e) {
+                e.printStackTrace();
+                updateTable();
+            }
+        }
+
+
+    }
+    @FXML
+    void outputfile(){
+        FileChooser filechooser =new FileChooser();
+        filechooser.setTitle("Output file Excel");
+        //filechooser.setInitialDirectory(new File(System.getProperty("C:")));
+        filechooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All","*.*"),new FileChooser.ExtensionFilter("XLSX","*.xlsx"));
+        File a= filechooser.showSaveDialog(null);
+        //File temp=new File( a.getf);
+
+        try {
+            FileOutputStream fileop=new FileOutputStream(a);
+            XSSFWorkbook wb=writeworkkhachhang();
+            wb.write(fileop);
+            fileop.close();
+            //JOptionPane.showMessageDialog(null,"Xuất báo cáo thành công");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Xuất file thành công !");
+            alert.showAndWait();
+
+
+        } catch (Exception e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Xuất file không thành công");
+            alert.showAndWait();
+        }
+    }
+
+    public XSSFWorkbook openfileexcel(String excelfilepath) throws IOException {
+        FileInputStream fileip=new FileInputStream(new File(excelfilepath));
+        XSSFWorkbook workbook=new XSSFWorkbook(fileip);
+
+        return workbook;
+    }
+    public List<KhachHangModel> getlistkhachhangfromexcel(XSSFWorkbook wb){
+        XSSFRow row;
+        List<KhachHangModel> listS=new ArrayList<>();
+        XSSFSheet sheet=wb.getSheetAt(0);
+        Iterator<Row> iteratorrow=sheet.iterator();
+//        iteratorrow.next();
+        //bor qua hang dau tien chua header cua file excel
+        while(iteratorrow.hasNext()) {
+            row=(XSSFRow) iteratorrow.next();
+            //if(row.getCell(0).getStringCellValue()==null) break;
+            if(row.getRowNum()==0) continue;
+            Iterator <org.apache.poi.ss.usermodel.Cell> iteratorcell=row.iterator();
+            KhachHangModel s=new KhachHangModel();
+            while(iteratorcell.hasNext()) {
+                Cell cell=iteratorcell.next();
+
+//			switch(cell.getCellType()) {
+//			case String:
+//			}
+                int columnIndex = cell.getColumnIndex();
+                switch (columnIndex) {
+                    case 0:
+                        s.setTenKH(cell.getStringCellValue());
+                        System.out.println("loi khi get ten excel");
+                        break;
+                    case 1:
+                        s.setSoDT(cell.getStringCellValue());
+                        System.out.println("loi khi get sdt excel");
+                        break;
+                    case 2:
+                        s.setSoCMT(cell.getStringCellValue());
+                        System.out.println("loi khi get soCMND excel");
+                        break;
+
+//                    case 3:
+//                        try {
+//                            //String d=(String)getvalueincell(cell);
+//                            System.out.println(getvalueincell(cell));
+//                            //java.util.Date date2=new SimpleDateFormat("M/d/yyyy").parse(d);
+//                            s.setNamxb(java.sql.Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format((java.util.Date)row.getCell(columnIndex).getDateCellValue())));
+//                            System.out.println("get ngaysinh tc");
+//                            System.out.println(s.getNamxb());
+//                            break;
+//                        } catch (Exception e) {
+//                            // TODO Auto-generated catch block
+//                            System.out.println("loi khi get nam xb excel");
+//                            e.printStackTrace();
+//                        }
+                    case 3:
+                        s.setDiaChi(cell.getStringCellValue());
+                        System.out.println("loi khi get dia chi excel");
+                        break;
+//                	try {
+//
+//
+////                	tt.setSoCMND(new BigDecimal((Double)getvalueincell(cell)));
+//                	tt.setSoCMND(new BigDecimal(row.getCell(columnIndex).getNumericCellValue()));
+//
+//                	System.out.println("loi khi get decimal excel");
+//                	System.out.println(tt.getSoCMND());
+//                	break;
+//                	} catch (Exception e) {
+//
+//					}
+                }
+            }
+            System.out.println(s.getTenKH()+"\t"+s.getSoDT()+"\t"+s.getSoCMT()+"\t"+s.getDiaChi());
+            listS.add(s);
+
+        }
+
+        return listS;
+    }
+    public XSSFWorkbook writeworkkhachhang() {
+        XSSFWorkbook workbook=new XSSFWorkbook();
+        XSSFSheet sheet=workbook.createSheet("Quản Lí Khách Hàng");
+        XSSFRow row;
+        int countrow=tableKhachHang.getItems().size();
+        TableView.TableViewSelectionModel<KhachHangModel> t= tableKhachHang.getSelectionModel();
+//        for(int i=0;i<countrow;i++){
+//            ObservableList<KhachHangModel> k= tableKhachHang.getItems();
+//        }
+        ObservableList<KhachHangModel>  khachHangModels= tableKhachHang.getItems();
+//        writeHeader(sheet, 0);
+
+        int size=khachHangModels.size();
+        int rowid=1;
+        for(int i=0;i<size;i++) {
+            KhachHangModel ex=khachHangModels.get(i);
+            row=sheet.createRow(rowid);
+            for(int j=0;j<5;j++) {
+                Cell cell=row.createCell(j);
+//			"Mã sách","Tên sách","Tác giả","Năm xuất bản","Nhà xuất bản","Đơn giá","Tình trạng","Giới thiệu"
+                switch (j) {
+                    case 0: {
+
+                        cell.setCellValue(ex.getMaKH());
+                        break;
+                    }
+                    case 1: {
+
+                        cell.setCellValue(ex.getTenKH());
+                        break;
+                    }
+                    case 2: {
+
+                        cell.setCellValue(ex.getSoDT());
+                        break;
+                    }
+                    case 3: {
+
+                        cell.setCellValue(ex.getSoCMT());
+                        break;
+                    }
+                    case 4: {
+
+                        cell.setCellValue(ex.getDiaChi());
+                        break;
+                    }
+                }
+            }
+            rowid++;
+        }
+//        int columns=sheet.getRow(0).getPhysicalNumberOfCells();
+//        autosizeColumn(sheet, columns);
+        return workbook;
     }
 
 }
