@@ -20,7 +20,6 @@ import views.Main;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -167,11 +166,11 @@ public class NhanVienController implements Initializable {
         tableNhanVien.setItems(tableOblist);
     }
     @FXML
-    private void openfile() throws IOException, SQLException {
-        nhanVienService.importExcelNV();
+    private void openfile(){
+
     }
     @FXML
-    private void outputfile() throws IOException, SQLException {
-        nhanVienService.exportExcelNV();
+    private void outputfile(){
+
     }
 }

@@ -1,6 +1,5 @@
 package controllers.hopdong;
 
-import controllers.xe.SuaXeController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +15,6 @@ import javafx.stage.Stage;
 import models.HopDongModel;
 import models.KhachHangModel;
 import models.NhanVienModel;
-import models.XeModel;
 import service.CTHopDongService;
 import service.HopDongService;
 import service.KhachHangService;
@@ -82,12 +80,12 @@ public class HopDongController implements Initializable {
     private NhanVienService nhanVienService = new NhanVienService();
     private CTHopDongService ctHopDongService = new CTHopDongService();
 
+   public static HopDongModel hopDongModel1;
     private ObservableList<KhachHangModel> tableKHOblist;
     private ObservableList<NhanVienModel> tableNVOblist;
     private ObservableList<HopDongModel> tableHDOblist;
 
     private Stage themHDStage = new Stage();
-    private Stage suaHDStage = new Stage();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -170,41 +168,15 @@ public class HopDongController implements Initializable {
     }
 
     @FXML
-    void sua(ActionEvent event) throws IOException {
-        HopDongModel hopDongModel = tableHopDong.getSelectionModel().getSelectedItem();
-        //canh bao
-        if(hopDongModel == null){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setHeaderText("Chọn 1 hợp đồng trước !");
-            alert.showAndWait();
-        }
-        else {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("hopdong/SuaHD.fxml"));
-            Parent parent = loader.load();
-
-            SuaHopDongController suaHopDongController = loader.getController();
-            suaHopDongController.initializeTextField(hopDongModel);
-
-            suaHDStage.setScene(new Scene(parent));
-            suaHDStage.setTitle("Sửa thông tin hợp đồng");
-            suaHDStage.show();
-
-            suaHDStage.setOnCloseRequest((e) -> {
-                updateTable();
-            });
-        }
-    }
-
-    @FXML
-    void tinhTien(ActionEvent event) {
+    void xuatFile(ActionEvent event) {
 
     }
 
     @FXML
     void handleRow(MouseEvent event) throws IOException {
         if (event.getClickCount() == 2 && tableHopDong.getSelectionModel().getSelectedItem() != null) {
-            HopDongModel hopDongModel = tableHopDong.getSelectionModel().getSelectedItem();
-            ctHopDongService.maHD = hopDongModel.getMaHD();
+            hopDongModel1 = tableHopDong.getSelectionModel().getSelectedItem();
+            ctHopDongService.maHD = hopDongModel1.getMaHD();
             Stage stage = new Stage();
             stage.setScene(new Scene(FXMLLoader.load(Main.class.getResource("hopdong/CTHopDong.fxml"))));
             stage.setTitle("Chi tiết hợp đồng");

@@ -68,10 +68,5 @@
       </Label>
       <TextField fx:id="textTongTienThanhToan" layoutX="532.0" layoutY="421.0" prefHeight="47.0" prefWidth="178.0" styleClass="textfield" stylesheets="@../../static/style.css" />
       <Button layoutX="787.0" layoutY="327.0" mnemonicParsing="false" onAction="#count" prefHeight="47.0" prefWidth="107.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Tính" />
-      <Label layoutX="399.0" layoutY="23.0" prefHeight="47.0" prefWidth="349.0" text="Tình trạng: 1: đã cho thuê    0: chưa cho thuê">
-         <font>
-            <Font name="System Italic" size="15.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

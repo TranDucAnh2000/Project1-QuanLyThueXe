@@ -14,11 +14,15 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.KhachHangModel;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import service.KhachHangService;
+import service.NhanVienService;
 import views.Main;
 
 import javax.swing.*;
@@ -28,8 +32,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -315,58 +319,105 @@ public class KhachHangController implements Initializable {
         XSSFSheet sheet=workbook.createSheet("Quản Lí Khách Hàng");
         XSSFRow row;
         int countrow=tableKhachHang.getItems().size();
+
+        row=sheet.createRow(0);
+        Cell cell1=row.createCell(2);
+        cell1.setCellValue("DANH SÁCH KHÁCH HÀNG CỦA CỬA HÀNG - HUST");
+        cell1.setCellStyle(createStyleForHeader(sheet));
+        sheet.addMergedRegion(new CellRangeAddress(0,1,2,8));
+
+        row=sheet.createRow(3);
+        cell1=row.createCell(2);
+        cell1.setCellValue("    Danh sách các khách hàng tại cửa hàng  ");
+        cell1.setCellStyle(createStyleForHeader(sheet));
+        sheet.addMergedRegion(new CellRangeAddress(3,3,2,8));
+        int rowid=5;
+
+        CellStyle cellStyle=createStyleForHeader(sheet);
+
+        row=sheet.createRow(rowid);
+        cell1=row.createCell(2);
+        cell1.setCellStyle(cellStyle);
+        cell1.setCellValue("Mã khách hàng ");
+        cell1=row.createCell(3);
+        cell1.setCellStyle(cellStyle);
+        cell1.setCellValue("Họ và tên");
+        cell1=row.createCell(4);
+        cell1.setCellStyle(cellStyle);
+        cell1.setCellValue("Số điện thoại");
+        cell1=row.createCell(5);
+        cell1.setCellStyle(cellStyle);
+        cell1.setCellValue("Số CMT");
+        cell1=row.createCell(6);
+        cell1.setCellStyle(cellStyle);
+        cell1.setCellValue("Địa chỉ");
+
+
+        rowid++;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         TableView.TableViewSelectionModel<KhachHangModel> t= tableKhachHang.getSelectionModel();
 //        for(int i=0;i<countrow;i++){
 //            ObservableList<KhachHangModel> k= tableKhachHang.getItems();
 //        }
         ObservableList<KhachHangModel>  khachHangModels= tableKhachHang.getItems();
 //        writeHeader(sheet, 0);
-        DateTimeFormatter time = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-
-        XSSFRow tenBang = sheet.createRow(0);
-        tenBang.createCell(0).setCellValue("Tên bảng");
-        tenBang.createCell(1).setCellValue("Khách hàng");
-        XSSFRow taiKhoanThem = sheet.createRow(1);
-        taiKhoanThem.createCell(0).setCellValue("Người dùng");
-        taiKhoanThem.createCell(1).setCellValue(Main.TDN);
-        XSSFRow maNV = sheet.createRow(2);
-        maNV.createCell(0).setCellValue("Mã nhân viên");
-        maNV.createCell(1).setCellValue(Main.maNV);
-        XSSFRow thoiGian = sheet.createRow(3);
-        thoiGian.createCell(0).setCellValue("Thời gian xuất");
-        thoiGian.createCell(1).setCellValue(time.format(now));
 
         int size=khachHangModels.size();
-        int rowid=5;
+
         for(int i=0;i<size;i++) {
             KhachHangModel ex=khachHangModels.get(i);
             row=sheet.createRow(rowid);
-            for(int j=0;j<5;j++) {
+            for(int j=2;j<7;j++) {
                 Cell cell=row.createCell(j);
 //			"Mã sách","Tên sách","Tác giả","Năm xuất bản","Nhà xuất bản","Đơn giá","Tình trạng","Giới thiệu"
                 switch (j) {
-                    case 0: {
+                    case 2: {
 
                         cell.setCellValue(ex.getMaKH());
                         break;
                     }
-                    case 1: {
+                    case 3: {
 
                         cell.setCellValue(ex.getTenKH());
                         break;
                     }
-                    case 2: {
+                    case 4: {
 
                         cell.setCellValue(ex.getSoDT());
                         break;
                     }
-                    case 3: {
+                    case 5: {
 
                         cell.setCellValue(ex.getSoCMT());
                         break;
                     }
-                    case 4: {
+                    case 6: {
 
                         cell.setCellValue(ex.getDiaChi());
                         break;
@@ -375,14 +426,39 @@ public class KhachHangController implements Initializable {
             }
             rowid++;
         }
-        sheet.autoSizeColumn(0);
-        sheet.autoSizeColumn(1);
-        sheet.autoSizeColumn(2);
-        sheet.autoSizeColumn(3);
-        sheet.autoSizeColumn(4);
+        rowid+=2;
+        row=sheet.createRow(rowid);
+        cell1=row.createCell(5);
+        LocalDate localDate=LocalDate.now();
+        LocalTime localTime=LocalTime.now();
+        cell1.setCellValue("Hà Nội : "+localTime.getHour()+" giờ "+localTime.getMinute()+"phút"+" , "+localDate.toString());
+        //cell1.setCellStyle(createStyleForHeader(sheet));
+        sheet.addMergedRegion(new CellRangeAddress(rowid,rowid,5,9));
+        rowid++;
+        row=sheet.createRow(rowid);
+        cell1=row.createCell(5);
+        cell1.setCellValue("Người xuất báo cáo : "+new NhanVienService().getthongtinNV(Main.maNV));
+        //cell1.setCellStyle(createStyleForHeader(sheet));
+        sheet.addMergedRegion(new CellRangeAddress(rowid,rowid,5,9));
+        rowid++;
+        row=sheet.createRow(rowid);
+        cell1=row.createCell(6);
+        cell1.setCellValue("Chữ ký nhân viên ");
+        //cell1.setCellStyle(createStyleForHeader(sheet));
+        sheet.addMergedRegion(new CellRangeAddress(rowid,rowid,6,8));
+
 //        int columns=sheet.getRow(0).getPhysicalNumberOfCells();
 //        autosizeColumn(sheet, columns);
         return workbook;
+    }
+    private static CellStyle createStyleForHeader(XSSFSheet sheet) {
+        XSSFFont font = sheet.getWorkbook().createFont();
+        ((XSSFFont) font).setFontName("Times New Roman");
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 12);
+        CellStyle cellStyle = sheet.getWorkbook().createCellStyle();
+        cellStyle.setFont(font);
+        return cellStyle;
     }
 
 }

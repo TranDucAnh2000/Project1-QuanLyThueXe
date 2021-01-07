@@ -51,7 +51,7 @@ public class ThongKeController implements Initializable {
     private KhachHangService khachHangService = new KhachHangService();
     private ThongKeService thongKeService = new ThongKeService();
 
-    private ObservableList<String> tieuChiOblist = FXCollections.observableArrayList("LoaiXe", "TenXe", "MauSac", "TinhTrang");
+    private ObservableList<String> tieuChiOblist = FXCollections.observableArrayList("LoaiXe", "TenXe", "MauSac");
     private ObservableList<String> chiTietOblist;
     private ObservableList<KhachHangModel> tableKHOblist;
 
