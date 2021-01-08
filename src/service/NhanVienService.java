@@ -65,10 +65,10 @@ public class NhanVienService {
             String sql = "Insert into NhanVien Values( ?, ?, ?, ?,?)";
             PreparedStatement pst = conn.prepareStatement(sql);
             //pst.setInt(1, khachHangModel.getMaKH());
-            pst.setNString(1, nv.getTenNV());
+            pst.setString(1, nv.getTenNV());
             pst.setString(2, nv.getSoDT());
             pst.setDate(3,nv.getNgaysinh());
-            pst.setNString(4, nv.getDiachi());
+            pst.setString(4, nv.getDiachi());
             pst.setString(5,nv.getSoCMT());
             pst.executeUpdate();
             conn.close();

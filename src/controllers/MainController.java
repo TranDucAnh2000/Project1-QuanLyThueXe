@@ -62,7 +62,7 @@ public class MainController implements Initializable {
         Main.primaryStage.close();
         Parent root = FXMLLoader.load(Main.class.getResource("dangnhap/DangNhap.fxml"));
         Main.primaryStage.setScene(new Scene(root));
-        Main.primaryStage.setTitle("Quản lý thuê xe");
+        Main.primaryStage.setTitle("Đăng nhập");
         Main.primaryStage.show();
     }
 

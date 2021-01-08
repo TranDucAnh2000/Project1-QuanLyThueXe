@@ -320,6 +320,7 @@ public class KhachHangController implements Initializable {
         XSSFRow row;
         int countrow=tableKhachHang.getItems().size();
 
+
         row=sheet.createRow(0);
         Cell cell1=row.createCell(2);
         cell1.setCellValue("DANH SÁCH KHÁCH HÀNG CỦA CỬA HÀNG - HUST");
@@ -354,30 +355,6 @@ public class KhachHangController implements Initializable {
 
 
         rowid++;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -446,6 +423,10 @@ public class KhachHangController implements Initializable {
         cell1.setCellValue("Chữ ký nhân viên ");
         //cell1.setCellStyle(createStyleForHeader(sheet));
         sheet.addMergedRegion(new CellRangeAddress(rowid,rowid,6,8));
+
+        for(int i=0; i<=10; i++){
+            sheet.autoSizeColumn(i);
+        }
 
 //        int columns=sheet.getRow(0).getPhysicalNumberOfCells();
 //        autosizeColumn(sheet, columns);

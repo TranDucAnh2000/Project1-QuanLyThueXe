@@ -76,8 +76,8 @@ public class KhachHangService {
             return 1;
         } catch (SQLException e) {
             e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Thêm không thành công,Nhập lại dữ liệu");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Thêm thành công");
             alert.showAndWait();
             return 0;
         }

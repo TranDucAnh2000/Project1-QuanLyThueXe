@@ -75,4 +75,26 @@ public class HopDongService {
         conn.close();
         pst.close();
     }
+
+    public int editListHopDong(HopDongModel hopDongModel)  {
+        String sql = "Update HopDong set MaKH = ?, MaNV = ?, NgayThue = ?, NgayHenTra = ?, TienCoc=?,TienThanhToan=? where MaHD = ?";
+        try {
+            Connection  conn = DBConnection.getConnection();
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, hopDongModel.getMaKH());
+            pst.setInt(2, hopDongModel.getMaNV());
+            pst.setDate(3, hopDongModel.getNgayThue());
+            pst.setDate(4, hopDongModel.getNgayHenTra());
+            pst.setInt(5, hopDongModel.getTienCoc());
+            pst.setInt(6,hopDongModel.getTienThanhToan());
+            pst.setInt(7, hopDongModel.getMaHD());
+            pst.executeUpdate();
+            conn.close();
+            pst.close();
+            return 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

@@ -20,11 +20,11 @@ public class XeService {
             XeModel xe=new XeModel();
             xe.setMaXe(res.getInt("MaXE"));
             xe.setBienSoXe(res.getString("BienSoXe"));
-            xe.setLoaiXe(res.getNString("LoaiXe"));
+            xe.setLoaiXe(res.getString("LoaiXe"));
             xe.setGiaThue(res.getInt("GiaThue"));
             xe.setTinhTrang(res.getBoolean("TinhTrang"));
-            xe.setMauSac(res.getNString("MauSac"));
-            xe.setTenXe(res.getNString("TenXe"));
+            xe.setMauSac(res.getString("MauSac"));
+            xe.setTenXe(res.getString("TenXe"));
             lsXe.add(xe);
         }
         connection.close();
@@ -35,22 +35,23 @@ public class XeService {
         return lsXe;
 
     }
-    public List<XeModel> searchListXe(String colSelected, String key) {
+    public List<XeModel> searchListXe(String colSelected, String key, int giaMin, int giaMax) {
         List<XeModel> list = new ArrayList<>();
         try {
 
             Connection conn = service.DBConnection.getConnection();
-            ResultSet res = service.DBConnection.getData("select * from Xe where " + colSelected + " LIKE N'%" + key + "%'", conn);
+            ResultSet res = service.DBConnection.getData("select * from Xe where " + colSelected + " LIKE N'%" + key + "%'\n" +
+                    "and GiaThue >= "+giaMin+" and GiaThue <= "+giaMax, conn);
 
             while(res.next()){
                 XeModel xe=new XeModel();
                 xe.setMaXe(res.getInt("MaXE"));
                 xe.setBienSoXe(res.getString("BienSoXe"));
-                xe.setLoaiXe(res.getNString("LoaiXe"));
+                xe.setLoaiXe(res.getString("LoaiXe"));
                 xe.setGiaThue(res.getInt("GiaThue"));
                 xe.setTinhTrang(res.getBoolean("TinhTrang"));
-                xe.setMauSac(res.getNString("MauSac"));
-                xe.setTenXe(res.getNString("TenXe"));
+                xe.setMauSac(res.getString("MauSac"));
+                xe.setTenXe(res.getString("TenXe"));
                 list.add(xe);
             }
 

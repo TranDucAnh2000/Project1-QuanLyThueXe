@@ -40,7 +40,7 @@ public class DangNhapController implements Initializable {
                     Main.primaryStage.close();
                     Parent root = FXMLLoader.load(Main.class.getResource("Main.fxml"));
                     Main.primaryStage.setScene(new Scene(root));
-                    Main.primaryStage.setTitle("Quản lý thuê xe");
+                    Main.primaryStage.setTitle("Quản lý thuê xe - Nhóm 1 - Trần Quốc Chung - Trần Đức Anh - Đỗ Hữu Bằng");
                     Main.primaryStage.show();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.WARNING);

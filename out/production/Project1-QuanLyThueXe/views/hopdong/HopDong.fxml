@@ -57,6 +57,5 @@
          </font>
       </Label>
       <Button layoutX="493.0" layoutY="336.0" mnemonicParsing="false" onAction="#sua" prefHeight="51.0" prefWidth="134.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Sửa" />
-      <Button layoutX="648.0" layoutY="336.0" mnemonicParsing="false" onAction="#tinhTien" prefHeight="51.0" prefWidth="134.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Tính tiền" />
    </children>
 </AnchorPane>

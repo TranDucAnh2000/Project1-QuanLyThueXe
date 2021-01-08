@@ -317,10 +317,10 @@ public class CTHopDongController implements Initializable {
                         cell.setCellValue(res.getInt(1));
                         break;
                     case 3:
-                        cell.setCellValue(res.getNString(2));
+                        cell.setCellValue(res.getString(2));
                         break;
                     case 4:
-                        cell.setCellValue(res.getNString(3));
+                        cell.setCellValue(res.getString(3));
                         break;
                     case 5:
                         cell.setCellValue(res.getString(4));

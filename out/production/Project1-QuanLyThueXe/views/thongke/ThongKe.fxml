@@ -17,56 +17,58 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="27.0" layoutY="95.0" prefHeight="47.0" prefWidth="84.0" text="Tiêu chí">
+      <ComboBox fx:id="tieuChiXe" layoutX="147.0" layoutY="23.0" onAction="#tieuChiXe" prefHeight="47.0" prefWidth="159.0" promptText="tiêu chí" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <ComboBox fx:id="chiTietXe" layoutX="343.0" layoutY="23.0" onAction="#chiTietXe" prefHeight="47.0" prefWidth="159.0" promptText="chi tiết" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <Label layoutX="681.0" layoutY="97.0" prefHeight="47.0" prefWidth="84.0" text="Số lượng">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <ComboBox fx:id="tieuChiXe" layoutX="111.0" layoutY="95.0" onAction="#tieuChiXe" prefHeight="47.0" prefWidth="159.0" styleClass="textfield" stylesheets="@../../static/style.css" />
-      <Label layoutX="339.0" layoutY="95.0" prefHeight="47.0" prefWidth="84.0" text="Chi tiết">
+      <TextField fx:id="soLuongXe" layoutX="765.0" layoutY="97.0" prefHeight="47.0" prefWidth="178.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <Separator layoutY="338.0" prefWidth="965.0" />
+      <Label layoutX="27.0" layoutY="360.0" prefHeight="47.0" prefWidth="178.0" text="Số lượng khách hàng">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <ComboBox fx:id="chiTietXe" layoutX="412.0" layoutY="95.0" onAction="#chiTietXe" prefHeight="47.0" prefWidth="159.0" styleClass="textfield" stylesheets="@../../static/style.css" />
-      <Label layoutX="640.0" layoutY="95.0" prefHeight="47.0" prefWidth="84.0" text="Số lượng">
+      <TextField fx:id="soLuongKH" layoutX="205.0" layoutY="360.0" prefHeight="47.0" prefWidth="178.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <Label layoutX="502.0" layoutY="360.0" prefHeight="47.0" prefWidth="178.0" text="Số lượng nhân viên">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="soLuongXe" layoutX="724.0" layoutY="95.0" prefHeight="47.0" prefWidth="178.0" styleClass="textfield" stylesheets="@../../static/style.css" />
-      <Separator layoutY="174.0" prefWidth="965.0" />
-      <Label layoutX="27.0" layoutY="211.0" prefHeight="47.0" prefWidth="178.0" text="Số lượng khách hàng">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <TextField fx:id="soLuongKH" layoutX="210.0" layoutY="211.0" prefHeight="47.0" prefWidth="178.0" styleClass="textfield" stylesheets="@../../static/style.css" />
-      <Label layoutX="503.0" layoutY="211.0" prefHeight="47.0" prefWidth="178.0" text="Số lượng nhân viên">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <TextField fx:id="soLuongNV" layoutX="681.0" layoutY="211.0" prefHeight="47.0" prefWidth="178.0" styleClass="textfield" stylesheets="@../../static/style.css" />
-      <Separator layoutY="300.0" prefHeight="3.0" prefWidth="965.0" />
-      <TableView fx:id="tableKH" layoutX="27.0" layoutY="318.0" prefHeight="254.0" prefWidth="302.0" styleClass="tableview" stylesheets="@../../static/style.css">
+      <TextField fx:id="soLuongNV" layoutX="676.0" layoutY="360.0" prefHeight="47.0" prefWidth="178.0" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <Separator layoutY="431.0" prefHeight="3.0" prefWidth="965.0" />
+      <TableView fx:id="tableKH" layoutX="27.0" layoutY="452.0" prefHeight="268.0" prefWidth="774.0" styleClass="tableview" stylesheets="@../../static/style.css">
         <columns>
-          <TableColumn fx:id="MaKH" prefWidth="131.42859077453613" text="Mã khách hàng" />
-          <TableColumn fx:id="TenKH" prefWidth="170.8571014404297" text="Tên khách hàng" />
+          <TableColumn fx:id="col_MaKH" prefWidth="64.00000190734863" text="Mã KH" />
+          <TableColumn fx:id="col_TenKH" prefWidth="93.14291381835938" text="Tên KH" />
+            <TableColumn fx:id="col_SoHD" prefWidth="123.42857360839844" text="Số hợp đồng" />
+            <TableColumn fx:id="col_SoXeDaThue" prefWidth="118.85711669921875" text="Số xe đã thuê" />
+            <TableColumn fx:id="col_SoXeDaTra" prefWidth="112.57150268554688" text="Số xe đã trả" />
+            <TableColumn fx:id="col_TongTienPhat" prefWidth="129.142822265625" text="Tổng tiền phạt" />
+            <TableColumn fx:id="col_DaThanhToan" prefWidth="134.857177734375" text="Đã thanh toán" />
         </columns>
       </TableView>
-      <Label layoutX="399.0" layoutY="327.0" prefHeight="47.0" prefWidth="120.0" text="Số xe đã thuê">
+      <TableView fx:id="tableXe" layoutX="27.0" layoutY="97.0" prefHeight="230.0" prefWidth="638.0" styleClass="tableview" stylesheets="@../../static/style.css">
+        <columns>
+          <TableColumn fx:id="col_MaXe" prefWidth="75.0" text="mã xe" />
+          <TableColumn fx:id="col_LoaiXe" prefWidth="75.0" text="loại xe" />
+            <TableColumn fx:id="col_TenXe" prefWidth="101.71429443359375" text="tên xe" />
+            <TableColumn fx:id="col_GiaThue" prefWidth="86.28569030761719" text="giá thuê" />
+            <TableColumn fx:id="col_MauSac" prefWidth="84.00006103515625" text="màu sắc" />
+            <TableColumn fx:id="col_TinhTrang" prefWidth="105.14285278320312" text="tình trạng" />
+            <TableColumn fx:id="col_BienSoXe" prefWidth="109.142822265625" text="biển số xe" />
+        </columns>
+      </TableView>
+      <TextField fx:id="textGiaMin" layoutX="584.0" layoutY="23.0" prefHeight="47.0" prefWidth="131.0" promptText="giá Min" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <TextField fx:id="textGiaMax" layoutX="740.0" layoutY="23.0" prefHeight="47.0" prefWidth="131.0" promptText="giá Max" styleClass="textfield" stylesheets="@../../static/style.css" />
+      <Label layoutX="823.0" layoutY="452.0" prefHeight="84.0" prefWidth="120.0" text="Thống kê khách hàng" wrapText="true">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="textSoXeDaThue" layoutX="532.0" layoutY="327.0" prefHeight="47.0" prefWidth="178.0" styleClass="textfield" stylesheets="@../../static/style.css" />
-      <Label layoutX="354.0" layoutY="421.0" prefHeight="47.0" prefWidth="172.0" text="Tổng tiền thanh toán">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <TextField fx:id="textTongTienThanhToan" layoutX="532.0" layoutY="421.0" prefHeight="47.0" prefWidth="178.0" styleClass="textfield" stylesheets="@../../static/style.css" />
-      <Button layoutX="787.0" layoutY="327.0" mnemonicParsing="false" onAction="#count" prefHeight="47.0" prefWidth="107.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Tính" />
+      <Button layoutX="828.0" layoutY="561.0" mnemonicParsing="false" onAction="#xuatFileKH" prefHeight="47.0" prefWidth="114.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Xuất file" />
+      <Button layoutX="828.0" layoutY="188.0" mnemonicParsing="false" onAction="#xuatFileXe" prefHeight="47.0" prefWidth="114.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Xuất file" />
    </children>
 </AnchorPane>

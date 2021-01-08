@@ -19,13 +19,13 @@
           <TableColumn fx:id="col_MaHD" prefWidth="63.0" text="Mã HD" />
           <TableColumn fx:id="col_MaXe" prefWidth="82.0" text="Mã xe" />
             <TableColumn fx:id="col_TienPhat" prefWidth="116.0" text="Tiền phạt" />
-            <TableColumn fx:id="col_NgayTra" prefWidth="121.0" text="Ngày trả" />
-            <TableColumn fx:id="col_SuCo" prefWidth="197.14285278320312" text="Sự cố" />
+            <TableColumn fx:id="col_NgayTra" prefWidth="128.0" text="Ngày trả" />
+            <TableColumn fx:id="col_SuCo" prefWidth="191.0" text="Sự cố" />
         </columns>
       </TableView>
       <Button layoutX="25.0" layoutY="25.0" mnemonicParsing="false" onAction="#them" prefHeight="42.0" prefWidth="108.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Thêm" />
       <Button layoutX="147.0" layoutY="25.0" mnemonicParsing="false" onAction="#xoa" prefHeight="42.0" prefWidth="108.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Xóa" />
-      <Button layoutX="266.0" layoutY="25.0" mnemonicParsing="false" onAction="#xuatFile" prefHeight="42.0" prefWidth="140.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Xuất hợp đồng" />
+      <Button layoutX="397.0" layoutY="25.0" mnemonicParsing="false" onAction="#xuatFile" prefHeight="42.0" prefWidth="140.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Xuất hợp đồng" />
       <Label alignment="CENTER" layoutX="611.0" layoutY="93.0" prefHeight="49.0" prefWidth="97.0" text="Mã hợp đồng">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -61,5 +61,6 @@
             <Font name="System Italic" size="13.0" />
          </font>
       </Label>
+      <Button layoutX="274.0" layoutY="25.0" mnemonicParsing="false" onAction="#traxe" prefHeight="42.0" prefWidth="108.0" styleClass="smallbutton" stylesheets="@../../static/style.css" text="Trả Xe" />
    </children>
 </AnchorPane>
