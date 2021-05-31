@@ -1,5 +1,5 @@
 # Project1-QuanLyThueXe.
-Phần mềm quản lý thuê xe hơi.
+Phần mềm quản lý thuê xe.
 
 ## Cài đặt
 1. Cài đặt JDK làm môi trường chạy java.
